@@ -18,6 +18,7 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "qemu/osdep.h"
 #include "disas/dis-asm.h"
 #include "exec/gdbstub.h"
 #include "kvm_ppc.h"
@@ -41,6 +42,9 @@
 #include "disas/capstone.h"
 #include "fpu/softfloat.h"
 #include "qapi/qapi-commands-machine-target.h"
+
+#include "helper_regs.h"
+#include "internal.h"
 
 /* #define PPC_DUMP_CPU */
 /* #define PPC_DEBUG_SPR */

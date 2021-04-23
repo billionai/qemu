@@ -37,6 +37,9 @@
 #include "exec/log.h"
 #include "qemu/atomic128.h"
 
+#include "qemu/qemu-print.h"
+#include "qapi/error.h"
+#include "internal.h"
 
 #define CPU_SINGLE_STEP 0x1
 #define CPU_BRANCH_STEP 0x2
@@ -7593,7 +7596,6 @@ GEN_HANDLER2_E(trechkpt, "trechkpt", 0x1F, 0x0E, 0x1F, 0x03FFF800, \
 };
 
 #include "helper_regs.h"
-#include "translate_init.c.inc"
 
 /*****************************************************************************/
 /* Misc PowerPC helpers */
