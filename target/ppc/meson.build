@@ -9,6 +9,7 @@ ppc_ss.add(files(
   'int_helper.c',
   'mem_helper.c',
   'misc_helper.c',
+  'spr_common.c',
   'timebase_helper.c',
   'translate.c',
 ))

@@ -226,4 +226,112 @@ void destroy_ppc_opcodes(PowerPCCPU *cpu);
 void ppc_gdb_init(CPUState *cs, PowerPCCPUClass *ppc);
 gchar *ppc_gdb_arch_name(CPUState *cs);
 
+/* spr-common.c */
+#include "cpu.h"
+void gen_spr_generic(CPUPPCState *env);
+void gen_spr_ne_601(CPUPPCState *env);
+void gen_spr_sdr1(CPUPPCState *env);
+void gen_low_BATs(CPUPPCState *env);
+void gen_high_BATs(CPUPPCState *env);
+void gen_tbl(CPUPPCState *env);
+void gen_6xx_7xx_soft_tlb(CPUPPCState *env, int nb_tlbs, int nb_ways);
+void gen_spr_G2_755(CPUPPCState *env);
+void gen_spr_7xx(CPUPPCState *env);
+#ifdef TARGET_PPC64
+void gen_spr_amr(CPUPPCState *env);
+void gen_spr_iamr(CPUPPCState *env);
+#endif /* TARGET_PPC64 */
+void gen_spr_thrm(CPUPPCState *env);
+void gen_spr_604(CPUPPCState *env);
+void gen_spr_603(CPUPPCState *env);
+void gen_spr_G2(CPUPPCState *env);
+void gen_spr_602(CPUPPCState *env);
+void gen_spr_601(CPUPPCState *env);
+void gen_spr_74xx(CPUPPCState *env);
+void gen_l3_ctrl(CPUPPCState *env);
+void gen_74xx_soft_tlb(CPUPPCState *env, int nb_tlbs, int nb_ways);
+void gen_spr_not_implemented(CPUPPCState *env,
+                             int num, const char *name);
+void gen_spr_not_implemented_ureg(CPUPPCState *env,
+                                  int num, const char *name);
+void gen_spr_not_implemented_no_write(CPUPPCState *env,
+                                      int num, const char *name);
+void gen_spr_not_implemented_write_nop(CPUPPCState *env,
+                                       int num, const char *name);
+void gen_spr_PSSCR(CPUPPCState *env);
+void gen_spr_TIDR(CPUPPCState *env);
+void gen_spr_pvr(CPUPPCState *env, PowerPCCPUClass *pcc);
+void gen_spr_svr(CPUPPCState *env, PowerPCCPUClass *pcc);
+void gen_spr_pir(CPUPPCState *env);
+void gen_spr_spefscr(CPUPPCState *env);
+void gen_spr_l1fgc(CPUPPCState *env, int num, int initial_value);
+void gen_spr_hid0(CPUPPCState *env);
+void gen_spr_mas73(CPUPPCState *env);
+void gen_spr_mmucsr0(CPUPPCState *env);
+void gen_spr_l1csr0(CPUPPCState *env);
+void gen_spr_l1csr1(CPUPPCState *env);
+void gen_spr_l2csr0(CPUPPCState *env);
+void gen_spr_usprg3(CPUPPCState *env);
+void gen_spr_usprgh(CPUPPCState *env);
+void gen_spr_BookE(CPUPPCState *env, uint64_t ivor_mask);
+uint32_t gen_tlbncfg(uint32_t assoc, uint32_t minsize,
+                     uint32_t maxsize, uint32_t flags,
+                     uint32_t nentries);
+void gen_spr_BookE206(CPUPPCState *env, uint32_t mas_mask,
+                             uint32_t *tlbncfg, uint32_t mmucfg);
+void gen_spr_440(CPUPPCState *env);
+void gen_spr_440_misc(CPUPPCState *env);
+void gen_spr_40x(CPUPPCState *env);
+void gen_spr_405(CPUPPCState *env);
+void gen_spr_401_403(CPUPPCState *env);
+void gen_spr_401(CPUPPCState *env);
+void gen_spr_401x2(CPUPPCState *env);
+void gen_spr_403(CPUPPCState *env);
+void gen_spr_403_real(CPUPPCState *env);
+void gen_spr_403_mmu(CPUPPCState *env);
+void gen_spr_40x_bus_control(CPUPPCState *env);
+void gen_spr_compress(CPUPPCState *env);
+void gen_spr_5xx_8xx(CPUPPCState *env);
+void gen_spr_5xx(CPUPPCState *env);
+void gen_spr_8xx(CPUPPCState *env);
+void gen_spr_970_hid(CPUPPCState *env);
+void gen_spr_970_hior(CPUPPCState *env);
+void gen_spr_book3s_ctrl(CPUPPCState *env);
+void gen_spr_book3s_altivec(CPUPPCState *env);
+void gen_spr_book3s_dbg(CPUPPCState *env);
+void gen_spr_book3s_207_dbg(CPUPPCState *env);
+void gen_spr_970_dbg(CPUPPCState *env);
+void gen_spr_book3s_pmu_sup(CPUPPCState *env);
+void gen_spr_book3s_pmu_user(CPUPPCState *env);
+void gen_spr_970_pmu_sup(CPUPPCState *env);
+void gen_spr_970_pmu_user(CPUPPCState *env);
+void gen_spr_power8_pmu_sup(CPUPPCState *env);
+void gen_spr_power8_pmu_user(CPUPPCState *env);
+void gen_spr_power5p_ear(CPUPPCState *env);
+void gen_spr_power5p_tb(CPUPPCState *env);
+void gen_spr_970_lpar(CPUPPCState *env);
+void gen_spr_power5p_lpar(CPUPPCState *env);
+void gen_spr_book3s_ids(CPUPPCState *env);
+void gen_spr_rmor(CPUPPCState *env);
+void gen_spr_power8_ids(CPUPPCState *env);
+void gen_spr_book3s_purr(CPUPPCState *env);
+void gen_spr_power6_dbg(CPUPPCState *env);
+void gen_spr_power5p_common(CPUPPCState *env);
+void gen_spr_power6_common(CPUPPCState *env);
+void gen_spr_power8_tce_address_control(CPUPPCState *env);
+void gen_spr_power8_tm(CPUPPCState *env);
+void gen_spr_power8_ebb(CPUPPCState *env);
+void gen_spr_vtb(CPUPPCState *env);
+void gen_spr_power8_fscr(CPUPPCState *env);
+void gen_spr_power8_pspb(CPUPPCState *env);
+void gen_spr_power8_dpdes(CPUPPCState *env);
+void gen_spr_power8_ic(CPUPPCState *env);
+void gen_spr_power8_book4(CPUPPCState *env);
+void gen_spr_power7_book4(CPUPPCState *env);
+void gen_spr_power8_rpr(CPUPPCState *env);
+void gen_spr_power9_mmu(CPUPPCState *env);
+/* TODO: find better solution for gen_op_mfspr and gen_op_mtspr */
+void spr_noaccess(DisasContext *ctx, int gprn, int sprn);
+#define SPR_NOACCESS (&spr_noaccess)
+
 #endif /* PPC_INTERNAL_H */
